@@ -1,0 +1,24 @@
+logrotate:
+  labels:
+    group: com.stakater.provider
+    provider: stakater
+    version: 3.13.0
+  namespace: dev
+  image:
+    name: stakater/logrotate
+    tag: "3.13.0"
+    pullPolicy: Always
+  environment:
+    cronSchedule: 0 */12 * * *
+  config:
+    k8sRotatorConf: |-
+      /var/lib/docker/containers/*/*.log {
+        rotate 1
+        copytruncate
+        missingok
+        notifempty
+        compress
+        maxsize 100M
+        daily
+        create 1234 dummy dummy
+      }
