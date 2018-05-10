@@ -1,6 +1,6 @@
 logrotate:
   labels:
-    group: com.stakater.provider
+    group: com.stakater.platform
     provider: stakater
     version: 3.13.0
   namespace: dev
