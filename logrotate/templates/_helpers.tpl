@@ -23,7 +23,7 @@ provider: {{ .Values.logrotate.labels.provider }}
 
 {{- define "labels.stakater" -}}
 {{ template "labels.selector" . }}
-version: {{ .Values.logrotate.labels.version | quote }}
+version: "{{ .Values.logrotate.labels.version }}"
 {{- end -}}
 
 {{- define "labels.chart" -}}
