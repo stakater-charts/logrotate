@@ -1,12 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
+  annotations:
+    configmap.reloader.stakater.com/reload: {{ template "name" . }}
   name: {{ template "name" . }}
 spec:
+  updateStrategy:
+    type: RollingUpdate
   template:
     metadata:
-      annotations:
-        configmap.reloader.stakater.com/reload: {{ template "name" . }}
       labels:
 {{ include "labels.stakater" . | indent 12 }}
 {{ include "labels.chart" . | indent 12 }}
