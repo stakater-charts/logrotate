@@ -5,6 +5,8 @@ metadata:
 spec:
   template:
     metadata:
+      annotations:
+        configmap.reloader.stakater.com/reload: {{ template "name" . }}
       labels:
 {{ include "labels.stakater" . | indent 12 }}
 {{ include "labels.chart" . | indent 12 }}
