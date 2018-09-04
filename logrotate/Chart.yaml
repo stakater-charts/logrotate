@@ -5,7 +5,7 @@ version: 1.0.5
 keywords:
   - logrotate
   - kubernetes
-home: https://github.com/stakater/chart-logrotate
+home: https://github.com/stakater-charts/logrotate
 maintainers:
 - name: Stakater
   email: stakater@aurorasolutions.io
