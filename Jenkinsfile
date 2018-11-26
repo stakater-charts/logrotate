@@ -5,4 +5,5 @@ def dummy = ""
 
 prepareAndUploadCharts {
     charts = [ "logrotate" ]
+    isPublic = true
 }
