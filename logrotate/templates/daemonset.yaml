@@ -2,28 +2,28 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   annotations:
-    configmap.reloader.stakater.com/reload: {{ template "name" . }}
-  name: {{ template "name" . }}
+    configmap.reloader.stakater.com/reload: {{ template "logrotate.name" . }}
+  name: {{ template "logrotate.name" . }}
 spec:
   updateStrategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-{{ include "labels.stakater" . | indent 8 }}
-{{ include "labels.chart" . | indent 8 }}
-      name: {{ template "name" . }}
+{{ include "logrotate.labels.stakater" . | indent 8 }}
+{{ include "logrotate.labels.chart" . | indent 8 }}
+      name: {{ template "logrotate.name" . }}
     spec:
       containers:
-      - name: {{ template "name" . }}
+      - name: {{ template "logrotate.name" . }}
         image: "{{ .Values.logrotate.image.name }}:{{ .Values.logrotate.image.tag }}"
         securityContext:
           privileged: true
         volumeMounts:
          - name: containers
            mountPath: /var/lib/docker/containers
-         - name: {{ template "name" . }}-config
-           mountPath: /etc/{{ template "name" . }}.d/k8s-rotator.conf
+         - name: {{ template "logrotate.name" . }}-config
+           mountPath: /etc/{{ template "logrotate.name" . }}.d/k8s-rotator.conf
            subPath: k8s-rotator.conf
         env:
           - name: CRON_SCHEDULE
@@ -33,5 +33,5 @@ spec:
              path: /var/lib/docker/containers
            name: containers
          - configMap:
-            name: {{ template "name" . }}
-           name: {{ template "name" . }}-config
+            name: {{ template "logrotate.name" . }}
+           name: {{ template "logrotate.name" . }}-config
