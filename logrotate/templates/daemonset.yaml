@@ -10,8 +10,8 @@ spec:
   template:
     metadata:
       labels:
-{{ include "labels.stakater" . | indent 12 }}
-{{ include "labels.chart" . | indent 12 }}
+{{ include "labels.stakater" . | indent 8 }}
+{{ include "labels.chart" . | indent 8 }}
       name: {{ template "name" . }}
     spec:
       containers:
