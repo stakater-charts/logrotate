@@ -4,6 +4,8 @@ logrotate:
     provider: stakater
     version: 3.13.0
   namespace: dev
+  securityContext:
+    privileged: true
   image:
     name: stakater/logrotate
     tag: "3.13.0"

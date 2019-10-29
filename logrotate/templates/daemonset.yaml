@@ -18,7 +18,7 @@ spec:
       - name: {{ template "logrotate.name" . }}
         image: "{{ .Values.logrotate.image.name }}:{{ .Values.logrotate.image.tag }}"
         securityContext:
-          privileged: true
+{{ toYaml .Values.logrotate.securityContext | indent 10 }}
         volumeMounts:
          - name: containers
            mountPath: /var/lib/docker/containers
