@@ -1,0 +1,18 @@
+{{- if .Values.logrotate.rbac.create -}}
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "logrotate.name" . }}-clusterrolebinding
+subjects:
+- kind: ServiceAccount
+{{- if .Values.logrotate.rbac.serviceAccount.name }}
+  name: {{ .Values.logrotate.rbac.serviceAccount.name }}
+{{- else }}
+  name: {{ template "logrotate.name" . }}
+{{- end }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ include "logrotate.name" . }}-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+{{- end -}}
