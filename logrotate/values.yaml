@@ -4,12 +4,21 @@ logrotate:
     provider: stakater
     version: 3.13.0
   namespace: dev
+  # securityContext:
+  #   privileged: true   
   image:
     name: stakater/logrotate
     tag: "3.13.0"
     pullPolicy: Always
+
+  rbac:
+    create: false
+    serviceAccount:
+      create: true
+
   environment:
     cronSchedule: 0 */12 * * *
+
   config:
     k8sRotatorConf: |-
       /var/lib/docker/containers/*/*.log {
