@@ -14,7 +14,8 @@ logrotate:
   rbac:
     create: false
     serviceAccount:
-      create: true
+      name: ""
+
 
   environment:
     cronSchedule: 0 */12 * * *

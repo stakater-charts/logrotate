@@ -5,7 +5,11 @@ metadata:
   name: {{ include "logrotate.name" . }}-clusterrolebinding
 subjects:
 - kind: ServiceAccount
-  name: {{ include "logrotate.name" . }}
+{{- if .Values.logrotate.rbac.serviceAccount.name }}
+  name: {{ .Values.logrotate.rbac.serviceAccount.name }}
+{{- else }}
+  name: {{ template "logrotate.name" . }}
+{{- end }}
   namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
