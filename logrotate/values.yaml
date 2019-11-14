@@ -4,8 +4,10 @@ logrotate:
     provider: stakater
     version: 3.13.0
   namespace: dev
+
   # securityContext:
   #   privileged: true   
+
   image:
     name: stakater/logrotate
     tag: "3.13.0"
@@ -15,7 +17,6 @@ logrotate:
     create: false
     serviceAccount:
       name: ""
-
 
   environment:
     cronSchedule: 0 */12 * * *
