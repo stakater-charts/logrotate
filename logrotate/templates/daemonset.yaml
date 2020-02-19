@@ -7,6 +7,10 @@ metadata:
 spec:
   updateStrategy:
     type: RollingUpdate
+  selector:
+    matchLabels:
+{{ include "logrotate.labels.stakater" . | indent 6 }}
+{{ include "logrotate.labels.chart" . | indent 6 }}
   template:
     metadata:
       labels:
