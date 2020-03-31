@@ -21,6 +21,10 @@ logrotate:
   environment:
     cronSchedule: 0 */12 * * *
 
+  tolerations: {}
+  # - effect: NoSchedule
+  #   operator: Exists
+
   config:
     k8sRotatorConf: |-
       /var/lib/docker/containers/*/*.log {
