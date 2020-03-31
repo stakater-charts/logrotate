@@ -40,6 +40,10 @@ spec:
         env:
           - name: CRON_SCHEDULE
             value: "{{ .Values.logrotate.environment.cronSchedule }}"
+      {{- if .Values.logrotate.tolerations }}
+      tolerations:
+{{ toYaml .Values.logrotate.tolerations | indent 6 -}}
+      {{- end }}
       volumes:
          - hostPath:
              path: /var/lib/docker/containers
